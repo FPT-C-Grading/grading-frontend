@@ -1,7 +1,7 @@
 import "./globals.css";
 
 export const metadata = {
-  title: "CSD202 · Chấm bài C tự động",
+  title: "Mr Vũ Huy FPT University PRF192 · Chấm bài C tự động",
   description: "Nộp mã nguồn C và nhận kết quả chấm điểm tự động.",
 };
 
