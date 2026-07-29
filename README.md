@@ -1,4 +1,4 @@
-# csd202-grading-frontend
+# FPT University PRF192-grading-frontend
 
 Giao diện web (Next.js) để sinh viên nộp mã nguồn C và xem kết quả chấm điểm
 tự động. Backend chấm điểm nằm ở repo riêng: `FPT-C-Grading/grading-engine`.
