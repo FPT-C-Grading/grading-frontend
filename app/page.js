@@ -119,7 +119,7 @@ export default function Page() {
 
   return (
     <div className="page">
-      <p className="eyebrow">CSD202 · Cấu trúc dữ liệu</p>
+      <p className="eyebrow">PRF192 · Fundamental Programming with C</p>
       <h1 className="title">Nộp bài & xem kết quả chấm điểm C</h1>
       <p className="subtitle">
         Dán mã nguồn hoặc tải lên file .c, chọn đề bài và mã số sinh viên. Hệ
