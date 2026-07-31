@@ -45,13 +45,20 @@ export async function POST(request) {
   }
 
   const submissionId = `${problem.id}__${safeStudentId}__${Date.now()}`;
+  const sourceFilename = problem.language === "cpp" ? "main.cpp" : "main.c";
 
   try {
-    await createSubmissionCommit(submissionId, code, {
-      problem_id: problem.id,
-      student_id: studentId.trim(),
-      submitted_at: new Date().toISOString(),
-    });
+    await createSubmissionCommit(
+      submissionId,
+      code,
+      {
+        problem_id: problem.id,
+        student_id: studentId.trim(),
+        submitted_at: new Date().toISOString(),
+        language: problem.language, // chỉ để lưu vết/tham khảo; grader không dùng trường này
+      },
+      sourceFilename
+    );
   } catch (err) {
     console.error("submit error:", err);
     return NextResponse.json(
