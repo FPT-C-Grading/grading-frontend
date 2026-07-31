@@ -73,6 +73,17 @@ export default function Page() {
   async function handleFileChange(e) {
     const file = e.target.files?.[0];
     if (!file) return;
+
+    const lowerName = file.name.toLowerCase();
+    if (!lowerName.endsWith(expectedExt)) {
+      setError(
+        `Đề bài này yêu cầu nộp file ${expectedExt} (bạn vừa chọn file "${file.name}"). Vui lòng kiểm tra lại đề bài hoặc file.`
+      );
+      e.target.value = "";
+      return;
+    }
+
+    setError("");
     const text = await file.text();
     setCode(text);
     setFileName(file.name);
@@ -116,10 +127,16 @@ export default function Page() {
   }
 
   const isPending = submissionId && !result && !timedOut;
+  const currentProblem = PROBLEMS.find((p) => p.id === problemId) || PROBLEMS[0];
+  const isCpp = currentProblem?.language === "cpp";
+  const expectedExt = isCpp ? ".cpp" : ".c";
+  const codePlaceholder = isCpp
+    ? `#include <iostream>\nusing namespace std;\n\nint main() {\n    // code cua ban o day\n    return 0;\n}`
+    : `#include <stdio.h>\n\nint main(void) {\n    // code cua ban o day\n    return 0;\n}`;
 
   return (
     <div className="page">
-      <p className="eyebrow">PRF192 · Fundamental Programming with C</p>
+      <p className="eyebrow">PRF192 PRF193 CSD202 · CF · FPT University Grading</p>
       <h1 className="title">Nộp bài & xem kết quả chấm điểm C</h1>
       <p className="subtitle">
         Dán mã nguồn hoặc tải lên file .c, chọn đề bài và mã số sinh viên. Hệ
@@ -133,7 +150,11 @@ export default function Page() {
             <select
               id="problemId"
               value={problemId}
-              onChange={(e) => setProblemId(e.target.value)}
+              onChange={(e) => {
+                setProblemId(e.target.value);
+                setFileName("");
+                setError("");
+              }}
             >
               {PROBLEMS.map((p) => (
                 <option key={p.id} value={p.id}>
@@ -141,6 +162,9 @@ export default function Page() {
                 </option>
               ))}
             </select>
+            <span className="char-count" style={{ display: "block", marginTop: 6 }}>
+              Ngôn ngữ: {isCpp ? "C++" : "C"} (file {expectedExt})
+            </span>
           </div>
           <div className="field">
             <label htmlFor="studentId">Mã số sinh viên</label>
@@ -174,15 +198,15 @@ export default function Page() {
         {mode === "paste" ? (
           <textarea
             className="code-input"
-            placeholder={`#include <stdio.h>\n\nint main(void) {\n    // code cua ban o day\n    return 0;\n}`}
+            placeholder={codePlaceholder}
             value={code}
             onChange={(e) => setCode(e.target.value)}
             spellCheck={false}
           />
         ) : (
           <div className="file-drop">
-            Chọn file mã nguồn (.c) từ máy tính của bạn
-            <input type="file" accept=".c,text/x-csrc,text/plain" onChange={handleFileChange} />
+            Chọn file mã nguồn ({expectedExt}) từ máy tính của bạn
+            <input type="file" accept={`${expectedExt},text/plain`} onChange={handleFileChange} />
             {fileName && <div className="file-name">Đã chọn: {fileName}</div>}
           </div>
         )}
@@ -221,6 +245,7 @@ export default function Page() {
       {result && <ResultView result={result} />}
 
       <p className="footer-note">Mã bài nộp: {submissionId || "—"}</p>
+	  <p className="footer-note">Copyright Huyvv CF FPTU</p>
     </div>
   );
 }
