@@ -136,7 +136,7 @@ export default function Page() {
 
   return (
     <div className="page">
-      <p className="eyebrow">CSD202 · Data Structures</p>
+      <p className="eyebrow">FPT UNIVERSITY . AUTO Grading C/C++</p>
       <h1 className="title">Submit &amp; view your C grading results</h1>
       <p className="subtitle">
         Paste your source code or upload a .c file, choose the problem and
