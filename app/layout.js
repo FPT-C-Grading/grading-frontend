@@ -1,13 +1,13 @@
 import "./globals.css";
 
 export const metadata = {
-  title: "Mr Vũ Huy FPT University PRF192 · Chấm bài C tự động",
-  description: "Nộp mã nguồn C và nhận kết quả chấm điểm tự động.",
+  title: "FPT UNIVERSITY · Automated C/C++ Grading",
+  description: "Submit C source code and get automated grading results.",
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="vi">
+    <html lang="en">
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
@@ -17,6 +17,7 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body>{children}</body>
+	  <footer>Copyright Huyvv. Computing Fundamentals Dept. FPT University Hanoi, Vietnam.</footer>
     </html>
   );
 }
