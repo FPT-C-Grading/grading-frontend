@@ -16,7 +16,7 @@ export default function Page() {
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
   const [submissionId, setSubmissionId] = useState(null);
-  const [result, setResult] = useState(null); // null trong khi đang chấm
+  const [result, setResult] = useState(null); // null while grading is in progress
   const [timedOut, setTimedOut] = useState(false);
 
   const pollTimer = useRef(null);
@@ -51,21 +51,21 @@ export default function Page() {
         const data = await res.json();
         if (!res.ok) {
           stopPolling();
-          setError(data.error || "Có lỗi khi kiểm tra kết quả.");
+          setError(data.error || "Something went wrong while checking the result.");
           return;
         }
         if (data.status && data.status !== "pending") {
           setResult(data);
           stopPolling();
         } else if (data.status === "pending") {
-          // vẫn đang chấm, tiếp tục polling
+          // still grading, keep polling
         } else {
-          // result.json không có "status" pending nghĩa là đã có kết quả cuối
+          // result.json with no "pending" status means a final result is ready
           setResult(data);
           stopPolling();
         }
       } catch {
-        // lỗi mạng tạm thời khi poll, thử lại ở lần sau
+        // transient network error while polling, retry on the next tick
       }
     }, POLL_INTERVAL_MS);
   }
@@ -77,7 +77,7 @@ export default function Page() {
     const lowerName = file.name.toLowerCase();
     if (!lowerName.endsWith(expectedExt)) {
       setError(
-        `Đề bài này yêu cầu nộp file ${expectedExt} (bạn vừa chọn file "${file.name}"). Vui lòng kiểm tra lại đề bài hoặc file.`
+        `This problem requires a ${expectedExt} file (you selected "${file.name}"). Please check the problem or the file.`
       );
       e.target.value = "";
       return;
@@ -96,11 +96,11 @@ export default function Page() {
     setSubmissionId(null);
 
     if (!code.trim()) {
-      setError("Vui lòng dán hoặc tải lên mã nguồn trước khi nộp bài.");
+      setError("Please paste or upload your source code before submitting.");
       return;
     }
     if (!studentId.trim()) {
-      setError("Vui lòng nhập mã số sinh viên.");
+      setError("Please enter your student ID.");
       return;
     }
 
@@ -113,14 +113,14 @@ export default function Page() {
       });
       const data = await res.json();
       if (!res.ok) {
-        setError(data.error || "Không thể nộp bài. Vui lòng thử lại.");
+        setError(data.error || "Could not submit your solution. Please try again.");
         setSubmitting(false);
         return;
       }
       setSubmissionId(data.submissionId);
       startPolling(data.submissionId);
     } catch {
-      setError("Không thể kết nối tới máy chủ. Vui lòng thử lại.");
+      setError("Could not connect to the server. Please try again.");
     } finally {
       setSubmitting(false);
     }
@@ -131,22 +131,23 @@ export default function Page() {
   const isCpp = currentProblem?.language === "cpp";
   const expectedExt = isCpp ? ".cpp" : ".c";
   const codePlaceholder = isCpp
-    ? `#include <iostream>\nusing namespace std;\n\nint main() {\n    // code cua ban o day\n    return 0;\n}`
-    : `#include <stdio.h>\n\nint main(void) {\n    // code cua ban o day\n    return 0;\n}`;
+    ? `#include <iostream>\nusing namespace std;\n\nint main() {\n    // your code here\n    return 0;\n}`
+    : `#include <stdio.h>\n\nint main(void) {\n    // your code here\n    return 0;\n}`;
 
   return (
     <div className="page">
-      <p className="eyebrow">PRF192 PRF193 CSD202 · CF · FPT University Grading</p>
-      <h1 className="title">Nộp bài & xem kết quả chấm điểm C</h1>
+      <p className="eyebrow">CSD202 · Data Structures</p>
+      <h1 className="title">Submit &amp; view your C grading results</h1>
       <p className="subtitle">
-        Dán mã nguồn hoặc tải lên file .c, chọn đề bài và mã số sinh viên. Hệ
-        thống sẽ tự động biên dịch, chạy test và trả điểm ngay trên trang này.
+        Paste your source code or upload a .c file, choose the problem and
+        enter your student ID. The system will automatically compile, run
+        the tests, and show your score right on this page.
       </p>
 
       <form className="card" onSubmit={handleSubmit}>
         <div className="field-row">
           <div className="field">
-            <label htmlFor="problemId">Đề bài</label>
+            <label htmlFor="problemId">Problem</label>
             <select
               id="problemId"
               value={problemId}
@@ -163,15 +164,15 @@ export default function Page() {
               ))}
             </select>
             <span className="char-count" style={{ display: "block", marginTop: 6 }}>
-              Ngôn ngữ: {isCpp ? "C++" : "C"} (file {expectedExt})
+              Language: {isCpp ? "C++" : "C"} (file {expectedExt})
             </span>
           </div>
           <div className="field">
-            <label htmlFor="studentId">Mã số sinh viên</label>
+            <label htmlFor="studentId">Student ID</label>
             <input
               id="studentId"
               type="text"
-              placeholder="VD: SV00123"
+              placeholder="e.g. SV00123"
               value={studentId}
               onChange={(e) => setStudentId(e.target.value)}
             />
@@ -184,14 +185,14 @@ export default function Page() {
             className={`tab-button ${mode === "paste" ? "active" : ""}`}
             onClick={() => setMode("paste")}
           >
-            Dán mã nguồn
+            Paste code
           </button>
           <button
             type="button"
             className={`tab-button ${mode === "file" ? "active" : ""}`}
             onClick={() => setMode("file")}
           >
-            Tải file .c
+            Upload file
           </button>
         </div>
 
@@ -205,18 +206,18 @@ export default function Page() {
           />
         ) : (
           <div className="file-drop">
-            Chọn file mã nguồn ({expectedExt}) từ máy tính của bạn
+            Choose a source file ({expectedExt}) from your computer
             <input type="file" accept={`${expectedExt},text/plain`} onChange={handleFileChange} />
-            {fileName && <div className="file-name">Đã chọn: {fileName}</div>}
+            {fileName && <div className="file-name">Selected: {fileName}</div>}
           </div>
         )}
 
         <div className="submit-row">
           <span className="char-count">
-            {code.length}/{MAX_CODE_LENGTH} ký tự
+            {code.length}/{MAX_CODE_LENGTH} characters
           </span>
           <button className="submit-button" type="submit" disabled={submitting || isPending}>
-            {submitting ? "Đang gửi..." : "Nộp bài chấm điểm"}
+            {submitting ? "Submitting..." : "Submit for grading"}
           </button>
         </div>
 
@@ -227,7 +228,7 @@ export default function Page() {
         <div className="result-card">
           <div className="status-pending">
             <span className="dot-flash" />
-            Đang biên dịch và chấm điểm... (thường mất 15–60 giây)
+            Compiling and grading... (usually takes 15–60 seconds)
           </div>
         </div>
       )}
@@ -235,17 +236,16 @@ export default function Page() {
       {timedOut && !result && (
         <div className="result-card">
           <p className="plain-message">
-            Việc chấm điểm đang mất nhiều thời gian hơn dự kiến. Bài nộp của bạn
-            vẫn đang được xử lý — hãy tải lại trang sau ít phút, hoặc liên hệ
-            giảng viên nếu tình trạng này kéo dài.
+            Grading is taking longer than expected. Your submission is still
+            being processed — reload this page in a few minutes, or contact
+            your instructor if this persists.
           </p>
         </div>
       )}
 
       {result && <ResultView result={result} />}
 
-      <p className="footer-note">Mã bài nộp: {submissionId || "—"}</p>
-	  <p className="footer-note">Copyright Huyvv CF FPTU</p>
+      <p className="footer-note">Submission ID: {submissionId || "—"}</p>
     </div>
   );
 }
@@ -254,7 +254,7 @@ function ResultView({ result }) {
   if (result.status === "error") {
     return (
       <div className="result-card">
-        <p className="result-meta-title">Không thể chấm điểm bài này</p>
+        <p className="result-meta-title">This submission could not be graded</p>
         <p className="plain-message">{result.message}</p>
       </div>
     );
@@ -268,11 +268,11 @@ function ResultView({ result }) {
             0
           </div>
           <div>
-            <p className="result-meta-title">Lỗi biên dịch</p>
-            <p className="result-meta-sub">Chương trình không biên dịch được, chưa chạy được test nào.</p>
+            <p className="result-meta-title">Compile error</p>
+            <p className="result-meta-sub">The program failed to compile, so no tests were run.</p>
           </div>
         </div>
-        <pre className="compile-log">{result.compile_log || "(không có log)"}</pre>
+        <pre className="compile-log">{result.compile_log || "(no log)"}</pre>
       </div>
     );
   }
@@ -288,9 +288,9 @@ function ResultView({ result }) {
         </div>
         <div>
           <p className="result-meta-title">
-            Đạt {result.passed}/{result.total} test case
+            Passed {result.passed}/{result.total} test cases
           </p>
-          <p className="result-meta-sub">Chấm lúc {formatTime(result.graded_at)}</p>
+          <p className="result-meta-sub">Graded at {formatTime(result.graded_at)}</p>
         </div>
       </div>
 
@@ -307,12 +307,12 @@ function ResultView({ result }) {
               {!t.passed && (t.expected !== undefined || t.actual !== undefined) && (
                 <div className="diff-block">
                   <div className="diff-line">
-                    <span className="diff-label">Kết quả mong đợi</span>
+                    <span className="diff-label">Expected output</span>
                     {t.expected}
                   </div>
                   <div className="diff-line">
-                    <span className="diff-label">Kết quả chương trình in ra</span>
-                    {t.actual || "(không có output)"}
+                    <span className="diff-label">Your program's output</span>
+                    {t.actual || "(no output)"}
                   </div>
                 </div>
               )}
@@ -324,7 +324,7 @@ function ResultView({ result }) {
       {result.compile_log && result.compile_log.trim() && (
         <details style={{ marginTop: 16 }}>
           <summary style={{ cursor: "pointer", fontSize: 13, color: "var(--ink-soft)" }}>
-            Xem cảnh báo biên dịch (warnings)
+            View compiler warnings
           </summary>
           <pre className="compile-log" style={{ marginTop: 8 }}>
             {result.compile_log}
@@ -336,16 +336,16 @@ function ResultView({ result }) {
 }
 
 function describeReason(reason) {
-  if (reason === "timeout") return "Chương trình chạy quá thời gian cho phép (có thể do vòng lặp vô hạn).";
-  if (reason.startsWith("exit_code_")) return `Chương trình kết thúc với lỗi (mã thoát ${reason.replace("exit_code_", "")}).`;
-  if (reason.startsWith("runtime_error")) return "Chương trình gặp lỗi khi chạy (ví dụ: lỗi truy cập bộ nhớ).";
+  if (reason === "timeout") return "The program ran longer than the time limit (possibly an infinite loop).";
+  if (reason.startsWith("exit_code_")) return `The program exited with an error (exit code ${reason.replace("exit_code_", "")}).`;
+  if (reason.startsWith("runtime_error")) return "The program crashed while running (e.g. an invalid memory access).";
   return reason;
 }
 
 function formatTime(isoString) {
   if (!isoString) return "";
   try {
-    return new Date(isoString).toLocaleString("vi-VN");
+    return new Date(isoString).toLocaleString("en-US");
   } catch {
     return isoString;
   }
