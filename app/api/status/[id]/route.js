@@ -5,7 +5,7 @@ export async function GET(_request, { params }) {
   const { id } = params;
 
   if (!id || !/^[a-zA-Z0-9_-]+$/.test(id)) {
-    return NextResponse.json({ error: "Mã bài nộp không hợp lệ." }, { status: 400 });
+    return NextResponse.json({ error: "Invalid submission ID." }, { status: 400 });
   }
 
   try {
@@ -17,7 +17,7 @@ export async function GET(_request, { params }) {
   } catch (err) {
     console.error("status error:", err);
     return NextResponse.json(
-      { error: "Không thể kiểm tra kết quả lúc này. Vui lòng thử lại." },
+      { error: "Could not check the result right now. Please try again." },
       { status: 502 }
     );
   }
