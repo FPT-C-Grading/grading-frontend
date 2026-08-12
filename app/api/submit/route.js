@@ -13,20 +13,20 @@ export async function POST(request) {
   try {
     body = await request.json();
   } catch {
-    return NextResponse.json({ error: "Dữ liệu gửi lên không hợp lệ." }, { status: 400 });
+    return NextResponse.json({ error: "Invalid request data." }, { status: 400 });
   }
 
   const { code, studentId, problemId } = body || {};
 
   if (!code || typeof code !== "string" || !code.trim()) {
     return NextResponse.json(
-      { error: "Vui lòng dán hoặc tải lên mã nguồn trước khi nộp bài." },
+      { error: "Please paste or upload your source code before submitting." },
       { status: 400 }
     );
   }
   if (code.length > MAX_CODE_LENGTH) {
     return NextResponse.json(
-      { error: `Mã nguồn quá dài (tối đa ${MAX_CODE_LENGTH} ký tự).` },
+      { error: `Source code is too long (maximum ${MAX_CODE_LENGTH} characters).` },
       { status: 400 }
     );
   }
@@ -34,14 +34,14 @@ export async function POST(request) {
   const safeStudentId = sanitizeId(studentId);
   if (!safeStudentId) {
     return NextResponse.json(
-      { error: "Mã số sinh viên không hợp lệ (chỉ được dùng chữ, số, gạch ngang, gạch dưới)." },
+      { error: "Invalid student ID (only letters, numbers, hyphens, and underscores are allowed)." },
       { status: 400 }
     );
   }
 
   const problem = PROBLEMS.find((p) => p.id === problemId);
   if (!problem) {
-    return NextResponse.json({ error: "Đề bài không hợp lệ." }, { status: 400 });
+    return NextResponse.json({ error: "Invalid problem." }, { status: 400 });
   }
 
   const submissionId = `${problem.id}__${safeStudentId}__${Date.now()}`;
@@ -55,14 +55,14 @@ export async function POST(request) {
         problem_id: problem.id,
         student_id: studentId.trim(),
         submitted_at: new Date().toISOString(),
-        language: problem.language, // chỉ để lưu vết/tham khảo; grader không dùng trường này
+        language: problem.language, // for record-keeping only; the grader does not rely on this field
       },
       sourceFilename
     );
   } catch (err) {
     console.error("submit error:", err);
     return NextResponse.json(
-      { error: "Không thể gửi bài lên hệ thống chấm điểm. Vui lòng thử lại sau." },
+      { error: "Could not submit your solution to the grading system. Please try again later." },
       { status: 502 }
     );
   }
