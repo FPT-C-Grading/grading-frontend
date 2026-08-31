@@ -41,7 +41,7 @@
         }
 
         .container {
-            max-width: 820px;
+            max-width: 860px;
             margin: 0 auto;
         }
 
@@ -77,7 +77,7 @@
             display: flex;
             gap: 12px;
             flex-wrap: wrap;
-            margin-bottom: 28px;
+            margin-bottom: 24px;
         }
 
         .nav-btn {
@@ -88,7 +88,7 @@
             text-decoration: none;
             background: #fff;
             border: 1px solid var(--border);
-            padding: 8px 14px;
+            padding: 8px 16px;
             border-radius: 6px;
             transition: all 0.15s ease;
             box-shadow: 0 1px 2px rgba(0,0,0,0.04);
@@ -101,22 +101,22 @@
 
         .quick-jump {
             display: flex;
-            gap: 8px;
+            gap: 6px;
             flex-wrap: wrap;
             margin-bottom: 32px;
             padding: 16px;
-            background: rgba(255, 255, 255, 0.6);
+            background: rgba(255, 255, 255, 0.65);
             border: 1px solid var(--border);
             border-radius: 8px;
         }
 
         .jump-item {
             font-family: var(--font-display);
-            font-size: 12px;
+            font-size: 11.5px;
             font-weight: 500;
             color: var(--ink-soft);
             text-decoration: none;
-            padding: 4px 10px;
+            padding: 4px 8px;
             background: #fff;
             border: 1px solid var(--border);
             border-radius: 4px;
@@ -127,6 +127,16 @@
             color: var(--accent-pen);
             border-color: var(--accent-pen);
             background: #f0f4ff;
+        }
+
+        .section-heading {
+            font-family: var(--font-display);
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--accent-pen);
+            margin: 32px 0 16px;
+            padding-bottom: 6px;
+            border-bottom: 2px solid rgba(41, 82, 163, 0.2);
         }
 
         .question-card {
@@ -150,7 +160,7 @@
 
         .question-title {
             font-family: var(--font-display);
-            font-size: 17px;
+            font-size: 16.5px;
             font-weight: 700;
             color: var(--ink);
         }
@@ -167,12 +177,12 @@
         }
 
         .question-desc {
-            font-size: 14.5px;
+            font-size: 14px;
             color: var(--ink);
-            margin-bottom: 16px;
+            margin-bottom: 14px;
         }
 
-        .question-desc ul {
+        .question-desc ul, .question-desc ol {
             margin: 8px 0 8px 24px;
         }
 
@@ -184,7 +194,7 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 12px;
-            margin-top: 14px;
+            margin-top: 12px;
         }
 
         @media (max-width: 600px) {
@@ -234,25 +244,36 @@
 <div class="container">
     <div class="header">
         <p class="eyebrow">FPT UNIVERSITY • C/C++ Auto Grading System</p>
-        <h1 class="title">Official Questions Bank (Danh sách Đề bài)</h1>
-        <p class="subtitle">Danh sách chi tiết 10 bài toán thực hành C/C++ (PRF192, PRF193, CSD202). Chọn bài để xem yêu cầu, định dạng Input và Output mẫu.</p>
+        <h1 class="title">Official Questions Bank (Ngân hàng Đề bài)</h1>
+        <p class="subtitle">Danh sách đầy đủ 18 bài thực hành C/C++ (PRF192, PRF193, CSD202). Chọn bài để xem yêu cầu, công thức và dữ liệu Input/Output mẫu.</p>
         <div class="nav-links">
-            <a class="nav-btn" href="/">← Quay lại trang Chấm điểm (Grading)</a>
+            <a class="nav-btn" href="/">← Quay lại trang Nộp bài & Chấm điểm</a>
         </div>
 
         <div class="quick-jump">
-            <a class="jump-item" href="#q1">Q1: Sum</a>
-            <a class="jump-item" href="#q2">Q2: Calc</a>
-            <a class="jump-item" href="#q3">Q3: Table</a>
-            <a class="jump-item" href="#q4">Q4: Find Max</a>
-            <a class="jump-item" href="#q5">Q5: Sign</a>
-            <a class="jump-item" href="#q6">Q6: Even/Odd</a>
-            <a class="jump-item" href="#q7">Q7: Pass/Fail</a>
-            <a class="jump-item" href="#q8">Q8: Classify</a>
-            <a class="jump-item" href="#q9">Q9: Leap Year</a>
-            <a class="jump-item" href="#q10">Q10: Admission</a>
+            <a class="jump-item" href="#q1">001. Sum</a>
+            <a class="jump-item" href="#q2">002. Calc</a>
+            <a class="jump-item" href="#q3">003. Table</a>
+            <a class="jump-item" href="#q4">004. Max</a>
+            <a class="jump-item" href="#q5">005. Sign</a>
+            <a class="jump-item" href="#q6">006. Even/Odd</a>
+            <a class="jump-item" href="#q7">007. Pass/Fail</a>
+            <a class="jump-item" href="#q8">008. Classify</a>
+            <a class="jump-item" href="#q9">009. Leap Year</a>
+            <a class="jump-item" href="#q10">010. Admission</a>
+            <a class="jump-item" href="#q11">011. Weekday</a>
+            <a class="jump-item" href="#q12">012. Calculator</a>
+            <a class="jump-item" href="#q13">013. Month Days</a>
+            <a class="jump-item" href="#q14">014. Traffic Light</a>
+            <a class="jump-item" href="#q15">015. Converter</a>
+            <a class="jump-item" href="#q16">016. ATM Menu</a>
+            <a class="jump-item" href="#q17">017. Coffee Shop</a>
+            <a class="jump-item" href="#q18">018. Mobile Plan</a>
         </div>
     </div>
+
+    <!-- PART 1: BASICS & CONDITIONALS -->
+    <h2 class="section-heading">Part 1: Basic Operations & Conditions (001 - 010)</h2>
 
     <!-- Question 1 -->
     <div class="question-card" id="q1">
@@ -260,18 +281,10 @@
             <h3 class="question-title">001. Sum of two integers</h3>
             <span class="badge">Basic I/O</span>
         </div>
-        <div class="question-desc">
-            Write a program in C/C++ that accepts two integers as input and outputs their sum.
-        </div>
+        <div class="question-desc">Write a program in C/C++ that accepts two integers as input and outputs their sum.</div>
         <div class="io-container">
-            <div class="io-box">
-                <div class="io-box-label">Sample Input</div>
-                <pre><code>3 5</code></pre>
-            </div>
-            <div class="io-box">
-                <div class="io-box-label">Sample Output</div>
-                <pre><code>8</code></pre>
-            </div>
+            <div class="io-box"><div class="io-box-label">Sample Input</div><pre><code>3 5</code></pre></div>
+            <div class="io-box"><div class="io-box-label">Sample Output</div><pre><code>8</code></pre></div>
         </div>
     </div>
 
@@ -281,21 +294,13 @@
             <h3 class="question-title">002. Four basic calculations</h3>
             <span class="badge">Arithmetic</span>
         </div>
-        <div class="question-desc">
-            Write a program in C/C++ that accepts two integers as input and outputs their sum, difference, product, and quotient (rounded to 2 decimal places). Each result must be printed on a separate line. If the divisor is 0, print <code>Divide by zero</code> for the quotient.
-        </div>
+        <div class="question-desc">Write a program in C/C++ that accepts two integers as input and outputs their sum, difference, product, and quotient (rounded to 2 decimal places). Each result must be printed on a separate line. If divisor is 0, print <code>Divide by zero</code>.</div>
         <div class="io-container">
-            <div class="io-box">
-                <div class="io-box-label">Sample Input</div>
-                <pre><code>3 7</code></pre>
-            </div>
-            <div class="io-box">
-                <div class="io-box-label">Sample Output</div>
-                <pre><code>10
+            <div class="io-box"><div class="io-box-label">Sample Input</div><pre><code>3 7</code></pre></div>
+            <div class="io-box"><div class="io-box-label">Sample Output</div><pre><code>10
 -4
 21
-0.43</code></pre>
-            </div>
+0.43</code></pre></div>
         </div>
     </div>
 
@@ -305,27 +310,13 @@
             <h3 class="question-title">003. Multiplication table</h3>
             <span class="badge">Loops</span>
         </div>
-        <div class="question-desc">
-            Write a program in C/C++ that accepts a positive integer n (0 &lt; n &lt; 10) as input and prints the multiplication table of that integer (from n x 1 to n x 10). If n is outside the range (0, 10), print <code>out of range</code>.
-        </div>
+        <div class="question-desc">Write a program in C/C++ that accepts a positive integer n (0 &lt; n &lt; 10) as input and prints the multiplication table of that integer (from n x 1 to n x 10). If n is outside (0, 10), print <code>out of range</code>.</div>
         <div class="io-container">
-            <div class="io-box">
-                <div class="io-box-label">Sample Input</div>
-                <pre><code>5</code></pre>
-            </div>
-            <div class="io-box">
-                <div class="io-box-label">Sample Output</div>
-                <pre><code>5 x 1 = 5
+            <div class="io-box"><div class="io-box-label">Sample Input</div><pre><code>5</code></pre></div>
+            <div class="io-box"><div class="io-box-label">Sample Output</div><pre><code>5 x 1 = 5
 5 x 2 = 10
-5 x 3 = 15
-5 x 4 = 20
-5 x 5 = 25
-5 x 6 = 30
-5 x 7 = 35
-5 x 8 = 40
-5 x 9 = 45
-5 x 10 = 50</code></pre>
-            </div>
+...
+5 x 10 = 50</code></pre></div>
         </div>
     </div>
 
@@ -335,18 +326,10 @@
             <h3 class="question-title">004. Find maximum of three integers</h3>
             <span class="badge">Conditionals</span>
         </div>
-        <div class="question-desc">
-            Write a program in C/C++ that accepts three integers a, b, and c as input and outputs the largest value among the three integers.
-        </div>
+        <div class="question-desc">Write a program in C/C++ that accepts three integers a, b, and c as input and outputs the largest value among the three integers.</div>
         <div class="io-container">
-            <div class="io-box">
-                <div class="io-box-label">Sample Input</div>
-                <pre><code>3 5 -7</code></pre>
-            </div>
-            <div class="io-box">
-                <div class="io-box-label">Sample Output</div>
-                <pre><code>5</code></pre>
-            </div>
+            <div class="io-box"><div class="io-box-label">Sample Input</div><pre><code>3 5 -7</code></pre></div>
+            <div class="io-box"><div class="io-box-label">Sample Output</div><pre><code>5</code></pre></div>
         </div>
     </div>
 
@@ -356,18 +339,10 @@
             <h3 class="question-title">005. Check positive, negative, or zero</h3>
             <span class="badge">Conditionals</span>
         </div>
-        <div class="question-desc">
-            Write a C/C++ program that reads an integer n from the keyboard and determines whether n is positive (<code>Positive</code>), negative (<code>Negative</code>), or zero (<code>Zero</code>).
-        </div>
+        <div class="question-desc">Write a C/C++ program that reads an integer n from the keyboard and determines whether n is positive (<code>Positive</code>), negative (<code>Negative</code>), or zero (<code>Zero</code>).</div>
         <div class="io-container">
-            <div class="io-box">
-                <div class="io-box-label">Sample Input</div>
-                <pre><code>-8</code></pre>
-            </div>
-            <div class="io-box">
-                <div class="io-box-label">Sample Output</div>
-                <pre><code>Negative</code></pre>
-            </div>
+            <div class="io-box"><div class="io-box-label">Sample Input</div><pre><code>-8</code></pre></div>
+            <div class="io-box"><div class="io-box-label">Sample Output</div><pre><code>Negative</code></pre></div>
         </div>
     </div>
 
@@ -377,18 +352,10 @@
             <h3 class="question-title">006. Even or odd number</h3>
             <span class="badge">Conditionals</span>
         </div>
-        <div class="question-desc">
-            Write a C/C++ program that reads an integer n and determines whether n is an even number (<code>Even</code>) or an odd number (<code>Odd</code>).
-        </div>
+        <div class="question-desc">Write a C/C++ program that reads an integer n and determines whether n is an even number (<code>Even</code>) or an odd number (<code>Odd</code>).</div>
         <div class="io-container">
-            <div class="io-box">
-                <div class="io-box-label">Sample Input</div>
-                <pre><code>25</code></pre>
-            </div>
-            <div class="io-box">
-                <div class="io-box-label">Sample Output</div>
-                <pre><code>Odd</code></pre>
-            </div>
+            <div class="io-box"><div class="io-box-label">Sample Input</div><pre><code>25</code></pre></div>
+            <div class="io-box"><div class="io-box-label">Sample Output</div><pre><code>Odd</code></pre></div>
         </div>
     </div>
 
@@ -398,23 +365,10 @@
             <h3 class="question-title">007. Score pass or fail</h3>
             <span class="badge">Range Check</span>
         </div>
-        <div class="question-desc">
-            Write a C/C++ program that reads a student's score from 0 to 10. The student passes if the score is greater than or equal to 5. Otherwise, the student fails. The program must display:
-            <ul>
-                <li><code>Pass</code> if the score is at least 5.0.</li>
-                <li><code>Fail</code> if the score is less than 5.0.</li>
-                <li><code>Invalid score</code> if the score is outside the range [0, 10].</li>
-            </ul>
-        </div>
+        <div class="question-desc">Write a C/C++ program that reads a student's score from 0 to 10. Display <code>Pass</code> if score &ge; 5, <code>Fail</code> if score &lt; 5, and <code>Invalid score</code> if score is outside [0, 10].</div>
         <div class="io-container">
-            <div class="io-box">
-                <div class="io-box-label">Sample Input</div>
-                <pre><code>7.5</code></pre>
-            </div>
-            <div class="io-box">
-                <div class="io-box-label">Sample Output</div>
-                <pre><code>Pass</code></pre>
-            </div>
+            <div class="io-box"><div class="io-box-label">Sample Input</div><pre><code>7.5</code></pre></div>
+            <div class="io-box"><div class="io-box-label">Sample Output</div><pre><code>Pass</code></pre></div>
         </div>
     </div>
 
@@ -425,25 +379,19 @@
             <span class="badge">Classification</span>
         </div>
         <div class="question-desc">
-            Write a C/C++ program that reads a student's score from 0 to 10 and classifies the result:
+            Classify score in range [0, 10]:
             <ul>
-                <li><b>9.0 &ndash; 10.0</b>: <code>Excellent</code></li>
-                <li><b>8.0 &ndash; 8.9</b>: <code>Very Good</code></li>
-                <li><b>7.0 &ndash; 7.9</b>: <code>Good</code></li>
-                <li><b>5.0 &ndash; 6.9</b>: <code>Pass</code></li>
-                <li><b>0.0 &ndash; 4.9</b>: <code>Fail</code></li>
-                <li>If score is outside [0, 10]: <code>Invalid score</code></li>
+                <li>9.0 &ndash; 10.0: <code>Excellent</code></li>
+                <li>8.0 &ndash; 8.9: <code>Very Good</code></li>
+                <li>7.0 &ndash; 7.9: <code>Good</code></li>
+                <li>5.0 &ndash; 6.9: <code>Pass</code></li>
+                <li>0.0 &ndash; 4.9: <code>Fail</code></li>
+                <li>Outside [0, 10]: <code>Invalid score</code></li>
             </ul>
         </div>
         <div class="io-container">
-            <div class="io-box">
-                <div class="io-box-label">Sample Input</div>
-                <pre><code>8.5</code></pre>
-            </div>
-            <div class="io-box">
-                <div class="io-box-label">Sample Output</div>
-                <pre><code>Very Good</code></pre>
-            </div>
+            <div class="io-box"><div class="io-box-label">Sample Input</div><pre><code>8.5</code></pre></div>
+            <div class="io-box"><div class="io-box-label">Sample Output</div><pre><code>Very Good</code></pre></div>
         </div>
     </div>
 
@@ -453,24 +401,10 @@
             <h3 class="question-title">009. Leap year check</h3>
             <span class="badge">Logical Operators</span>
         </div>
-        <div class="question-desc">
-            Write a C/C++ program that reads a year and determines whether it is a leap year:
-            <ul>
-                <li>Divisible by 400, OR</li>
-                <li>Divisible by 4 but NOT divisible by 100.</li>
-                <li>Otherwise, it is not a leap year.</li>
-            </ul>
-            Display <code>Leap year</code> or <code>Not a leap year</code>.
-        </div>
+        <div class="question-desc">A year is a leap year if divisible by 400, or divisible by 4 and not divisible by 100. Display <code>Leap year</code> or <code>Not a leap year</code>.</div>
         <div class="io-container">
-            <div class="io-box">
-                <div class="io-box-label">Sample Input</div>
-                <pre><code>2024</code></pre>
-            </div>
-            <div class="io-box">
-                <div class="io-box-label">Sample Output</div>
-                <pre><code>Leap year</code></pre>
-            </div>
+            <div class="io-box"><div class="io-box-label">Sample Input</div><pre><code>2024</code></pre></div>
+            <div class="io-box"><div class="io-box-label">Sample Output</div><pre><code>Leap year</code></pre></div>
         </div>
     </div>
 
@@ -481,35 +415,182 @@
             <span class="badge">Complex Logic</span>
         </div>
         <div class="question-desc">
-            Write a C/C++ program to determine whether a student is eligible for university admission.
-            <br/><br/>
-            <b>Inputs read in order:</b>
-            <ul>
-                <li><code>age</code>: Student's age (integer)</li>
-                <li><code>math</code>: Mathematics score (float/double)</li>
-                <li><code>english</code>: English score (float/double)</li>
-                <li><code>programming</code>: Programming score (float/double)</li>
-            </ul>
-            <b>Eligibility conditions (all must be met):</b>
-            <ul>
-                <li>Age is between 18 and 25, inclusive.</li>
-                <li>Mathematics score &ge; 6.0</li>
-                <li>English score &ge; 5.0</li>
-                <li>Programming score &ge; 6.5</li>
-                <li>Average score of the three subjects &ge; 6.0</li>
-            </ul>
-            Display <code>Eligible</code> or <code>Not Eligible</code>.
+            Reads age, math, english, programming. Eligible if: 18 &le; age &le; 25, math &ge; 6.0, english &ge; 5.0, programming &ge; 6.5, average &ge; 6.0. Display <code>Eligible</code> or <code>Not Eligible</code>.
         </div>
         <div class="io-container">
-            <div class="io-box">
-                <div class="io-box-label">Sample Input</div>
-                <pre><code>20
-7.0 6.0 8.0</code></pre>
-            </div>
-            <div class="io-box">
-                <div class="io-box-label">Sample Output</div>
-                <pre><code>Eligible</code></pre>
-            </div>
+            <div class="io-box"><div class="io-box-label">Sample Input</div><pre><code>20
+7.0 6.0 8.0</code></pre></div>
+            <div class="io-box"><div class="io-box-label">Sample Output</div><pre><code>Eligible</code></pre></div>
+        </div>
+    </div>
+
+    <!-- PART 2: SWITCH-CASE & MENU-DRIVEN -->
+    <h2 class="section-heading">Part 2: Switch-Case & Menu-Driven Programs (011 - 018)</h2>
+
+    <!-- Question 11 -->
+    <div class="question-card" id="q11">
+        <div class="question-header">
+            <h3 class="question-title">011. Day of the Week</h3>
+            <span class="badge">Switch-Case</span>
+        </div>
+        <div class="question-desc">
+            Write a C/C++ program that reads an integer day from 1 to 7 and displays the corresponding day of the week:
+            <ul>
+                <li>1 &rarr; <code>Monday</code>, 2 &rarr; <code>Tuesday</code>, 3 &rarr; <code>Wednesday</code>, 4 &rarr; <code>Thursday</code>, 5 &rarr; <code>Friday</code>, 6 &rarr; <code>Saturday</code>, 7 &rarr; <code>Sunday</code></li>
+                <li>Outside 1–7 &rarr; <code>Invalid day</code></li>
+            </ul>
+        </div>
+        <div class="io-container">
+            <div class="io-box"><div class="io-box-label">Sample Input</div><pre><code>4</code></pre></div>
+            <div class="io-box"><div class="io-box-label">Sample Output</div><pre><code>Thursday</code></pre></div>
+        </div>
+    </div>
+
+    <!-- Question 12 -->
+    <div class="question-card" id="q12">
+        <div class="question-header">
+            <h3 class="question-title">012. Simple Calculator</h3>
+            <span class="badge">Switch-Case</span>
+        </div>
+        <div class="question-desc">
+            Write a C/C++ program that reads two floating-point numbers a and b, followed by an arithmetic operator (+, -, *, /).
+            Perform the calculation using switch-case.
+            <ul>
+                <li>If divisor is 0 in division (/), display <code>Divide by zero</code>.</li>
+                <li>If operator is not supported, display <code>Invalid operator</code>.</li>
+            </ul>
+        </div>
+        <div class="io-container">
+            <div class="io-box"><div class="io-box-label">Sample Input</div><pre><code>15 4 *</code></pre></div>
+            <div class="io-box"><div class="io-box-label">Sample Output</div><pre><code>60</code></pre></div>
+        </div>
+    </div>
+
+    <!-- Question 13 -->
+    <div class="question-card" id="q13">
+        <div class="question-header">
+            <h3 class="question-title">013. Month Information</h3>
+            <span class="badge">Switch-Case</span>
+        </div>
+        <div class="question-desc">
+            Write a C/C++ program that reads a month number from 1 to 12 and displays the month name and number of days.
+            <ul>
+                <li>For February, display: <code>February - 28 or 29 days</code></li>
+                <li>For months with 30 days: <code>&lt;Month&gt; - 30 days</code></li>
+                <li>For months with 31 days: <code>&lt;Month&gt; - 31 days</code></li>
+                <li>Outside 1–12, display: <code>Invalid month</code></li>
+            </ul>
+        </div>
+        <div class="io-container">
+            <div class="io-box"><div class="io-box-label">Sample Input</div><pre><code>9</code></pre></div>
+            <div class="io-box"><div class="io-box-label">Sample Output</div><pre><code>September - 30 days</code></pre></div>
+        </div>
+    </div>
+
+    <!-- Question 14 -->
+    <div class="question-card" id="q14">
+        <div class="question-header">
+            <h3 class="question-title">014. Traffic Light Controller</h3>
+            <span class="badge">Switch-Case</span>
+        </div>
+        <div class="question-desc">
+            Write a C/C++ program that reads a character representing a traffic light:
+            <ul>
+                <li><code>R</code> or <code>r</code> &rarr; <code>Stop</code></li>
+                <li><code>Y</code> or <code>y</code> &rarr; <code>Get Ready</code></li>
+                <li><code>G</code> or <code>g</code> &rarr; <code>Go</code></li>
+                <li>Any other character &rarr; <code>Invalid traffic light</code></li>
+            </ul>
+        </div>
+        <div class="io-container">
+            <div class="io-box"><div class="io-box-label">Sample Input</div><pre><code>g</code></pre></div>
+            <div class="io-box"><div class="io-box-label">Sample Output</div><pre><code>Go</code></pre></div>
+        </div>
+    </div>
+
+    <!-- Question 15 -->
+    <div class="question-card" id="q15">
+        <div class="question-header">
+            <h3 class="question-title">015. Menu-Driven Unit Converter</h3>
+            <span class="badge">Menu-Driven</span>
+        </div>
+        <div class="question-desc">
+            Reads an option (1–6) and a value to convert:
+            <ul>
+                <li>1: Kilometers to Miles (<code>Miles = KM * 0.621371</code>) &rarr; <code>Miles: &lt;val&gt;</code></li>
+                <li>2: Miles to Kilometers (<code>KM = Miles * 1.60934</code>) &rarr; <code>Kilometers: &lt;val&gt;</code></li>
+                <li>3: Kilograms to Pounds (<code>Pounds = KG * 2.20462</code>) &rarr; <code>Pounds: &lt;val&gt;</code></li>
+                <li>4: Pounds to Kilograms (<code>KG = Pounds * 0.453592</code>) &rarr; <code>Kilograms: &lt;val&gt;</code></li>
+                <li>5: Celsius to Fahrenheit (<code>F = C * 9 / 5 + 32</code>) &rarr; <code>Fahrenheit: &lt;val&gt;</code></li>
+                <li>6: Fahrenheit to Celsius (<code>C = (F - 32) * 5 / 9</code>) &rarr; <code>Celsius: &lt;val&gt;</code></li>
+                <li>Other option &rarr; <code>Invalid choice</code></li>
+            </ul>
+        </div>
+        <div class="io-container">
+            <div class="io-box"><div class="io-box-label">Sample Input</div><pre><code>3
+10</code></pre></div>
+            <div class="io-box"><div class="io-box-label">Sample Output</div><pre><code>Pounds: 22.0462</code></pre></div>
+        </div>
+    </div>
+
+    <!-- Question 16 -->
+    <div class="question-card" id="q16">
+        <div class="question-header">
+            <h3 class="question-title">016. ATM Menu Simulation</h3>
+            <span class="badge">Menu-Driven</span>
+        </div>
+        <div class="question-desc">
+            Simulate an ATM with initial balance of <b>1000.00</b>:
+            <ul>
+                <li>1: Check Balance &rarr; <code>Current balance: 1000.00</code></li>
+                <li>2: Deposit Money &rarr; reads amount &rarr; <code>New balance: &lt;val&gt;</code></li>
+                <li>3: Withdraw Money &rarr; reads amount &rarr; if balance &ge; amount: <code>New balance: &lt;val&gt;</code>, else: <code>Insufficient funds</code></li>
+                <li>4: Exit &rarr; <code>Thank you for using the ATM.</code></li>
+                <li>Other choice &rarr; <code>Invalid choice</code></li>
+            </ul>
+        </div>
+        <div class="io-container">
+            <div class="io-box"><div class="io-box-label">Sample Input</div><pre><code>2
+500</code></pre></div>
+            <div class="io-box"><div class="io-box-label">Sample Output</div><pre><code>New balance: 1500.00</code></pre></div>
+        </div>
+    </div>
+
+    <!-- Question 17 -->
+    <div class="question-card" id="q17">
+        <div class="question-header">
+            <h3 class="question-title">017. Coffee Shop Order</h3>
+            <span class="badge">Menu-Driven</span>
+        </div>
+        <div class="question-desc">
+            Menu: 1. Espresso ($2.00), 2. Latte ($3.50), 3. Cappuccino ($3.00), 4. Americano ($2.50), 5. Mocha ($4.00).
+            Reads menu item number and quantity.
+            Displays item name, quantity, and total price formatted to 2 decimal places. If item number is invalid, display <code>Invalid item</code>.
+        </div>
+        <div class="io-container">
+            <div class="io-box"><div class="io-box-label">Sample Input</div><pre><code>2
+3</code></pre></div>
+            <div class="io-box"><div class="io-box-label">Sample Output</div><pre><code>Item: Latte
+Quantity: 3
+Total: $10.50</code></pre></div>
+        </div>
+    </div>
+
+    <!-- Question 18 -->
+    <div class="question-card" id="q18">
+        <div class="question-header">
+            <h3 class="question-title">018. Mobile Phone Service Plan</h3>
+            <span class="badge">Switch-Case</span>
+        </div>
+        <div class="question-desc">
+            Base fee: Plan A ($20), Plan B ($35), Plan C ($50).
+            Each additional data package costs $5.
+            Reads plan code and number of additional packages. Calculates total monthly bill formatted as <code>Monthly bill: $&lt;amount&gt;.00</code>. If plan code is invalid, display <code>Invalid plan</code>.
+        </div>
+        <div class="io-container">
+            <div class="io-box"><div class="io-box-label">Sample Input</div><pre><code>B
+3</code></pre></div>
+            <div class="io-box"><div class="io-box-label">Sample Output</div><pre><code>Monthly bill: $50.00</code></pre></div>
         </div>
     </div>
 
