@@ -143,7 +143,7 @@ export default function Page() {
         enter your student ID. The system will automatically compile, run
         the tests, and show your score right on this page.
       </p>
-	  <h2><a href="../questions.html" target="_blank" title="Click here to get questions">Question list</a></h2>
+	  <h2><a href="questions.html" target="_blank" title="Click here to get questions">Question list</a></h2>
 
       <form className="card" onSubmit={handleSubmit}>
         <div className="field-row">
