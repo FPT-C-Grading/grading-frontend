@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useRef, useState } from "react";
 import { PROBLEMS } from "../lib/problems";
@@ -120,8 +120,7 @@ export default function Page() {
       setSubmissionId(data.submissionId);
       startPolling(data.submissionId);
     } catch {
-      setError("Could not connect to the server. Please try again.");
-    } finally {
+      setError("Network error. Please try submitting again.");
       setSubmitting(false);
     }
   }
@@ -136,14 +135,38 @@ export default function Page() {
 
   return (
     <div className="page">
-      <p className="eyebrow">FPT UNIVERSITY . Auto Grading C/C++ PRF192 PRF193 CSD202</p>
-      <h1 className="title">Submit &amp; view your C grading results</h1>
+      <p className="eyebrow">FPT UNIVERSITY • Auto Grading C/C++ PRF192 PRF193 CSD202</p>
+      <h1 className="title">Submit &amp; view your C/C++ grading results</h1>
       <p className="subtitle">
-        Paste your source code or upload a .c file, choose the problem and
+        Paste your source code or upload a source file, choose the problem and
         enter your student ID. The system will automatically compile, run
         the tests, and show your score right on this page.
       </p>
-	  <h2><a href="questions.html" target="_blank" title="Click here to get questions">Question list</a></h2>
+
+      <div style={{ marginBottom: 20 }}>
+        <a
+          href="/questions.html"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            display: "inline-flex",
+            alignItems: "center",
+            gap: "8px",
+            fontSize: "15px",
+            fontWeight: 600,
+            color: "var(--accent-primary, #2563eb)",
+            textDecoration: "none",
+            backgroundColor: "rgba(37, 99, 235, 0.08)",
+            padding: "8px 16px",
+            borderRadius: "8px",
+            border: "1px solid rgba(37, 99, 235, 0.2)"
+          }}
+          title="Click here to view question list"
+        >
+          <span>📋 View Question list (Đề bài)</span>
+          <span>↗</span>
+        </a>
+      </div>
 
       <form className="card" onSubmit={handleSubmit}>
         <div className="field-row">
@@ -173,7 +196,7 @@ export default function Page() {
             <input
               id="studentId"
               type="text"
-              placeholder="e.g. He210123"
+              placeholder="e.g. HE210123"
               value={studentId}
               onChange={(e) => setStudentId(e.target.value)}
             />
@@ -238,7 +261,7 @@ export default function Page() {
         <div className="result-card">
           <p className="plain-message">
             Grading is taking longer than expected. Your submission is still
-            being processed — reload this page in a few minutes, or contact
+            being processed – reload this page in a few minutes, or contact
             your instructor if this persists.
           </p>
         </div>
